@@ -98,4 +98,30 @@ function createMap(earthquakes) {
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
+
+  // Set up the legend
+  var legend = L.control({ position: "bottomright" });
+  legend.onAdd = function() {
+    var div = L.DomUtil.create("div", "info legend");
+    //var limits = geojson.options.limits;
+    var colors = ["green","yellow", "orange","red"];
+    var labels = ["Less than 2","Between 2 and 4", "Between 4 and 6", "Over 6"];
+
+    //Add min & max
+     var legendInfo = "<h3>Earthquake Magnitude</h3>" +
+      "<div class=\"labels\">" +
+      "<ul>"+
+      "<li style=\"background-color: " + colors[0]+"\">" + labels[0]+"</li>"+
+      "<li style=\"background-color: " + colors[1]+"\">" + labels[1]+"</li>"+
+      "<li style=\"background-color: " + colors[2]+"\">" + labels[2]+"</li>"+
+      "<li style=\"background-color: " + colors[3]+"\">" + labels[3]+"</li>"+
+      "</div>"; 
+
+    div.innerHTML = legendInfo;
+
+    return div;
+  };
+
+  // Adding legend to the map
+  legend.addTo(myMap);
 }

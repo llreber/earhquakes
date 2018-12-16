@@ -1,1 +1,1 @@
-# earhquakes
+# earthquakes
